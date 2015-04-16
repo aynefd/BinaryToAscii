@@ -1,9 +1,18 @@
 .ORIG x3000
+AND R0, R0, #0
+AND R1, R1, #0
+AND R2, R2, #0
+AND R3, R3, #0
+AND R4, R4, #0
+AND R5, R5, #0
+AND R6, R6, #0
+AND R7, R7, #0
 
 
-
-LD R0,MyNum
-JSR BinarytoASCII
+LD R2,MyNum
+LD R3,MyNumB
+BRnzp DIVISION
+OUTPUT JSR BinarytoASCII
 LD R0, NewlineChar
 OUT
 LEA R0,ASCIIBUFF
@@ -15,7 +24,37 @@ HALT
 
 
 
-MyNum .FILL x007F
+MyNum .FILL x000A
+MyNumB .FILL x0005
+
+
+;r2 and r3 will have the operands
+;r0 will hold the answer
+ADDITION ADD R0, R2, R3	;add R2 + R3 and store in R2
+BRnzp OUTPUT
+
+SUBTRACTION NOT R3, R3
+ADD R3, R3, #1
+ADD R0, R2, R3
+BRnzp OUTPUT
+
+
+MULT ADD R0, R0, R2
+ADD R3, R3, #-1
+BRp MULT
+BRnzp OUTPUT
+
+
+DIVISION ADD R6, R6, #0 ;counter
+NOT R3, R3
+ADD R3, R3, #1
+DivLoop ADD R6, R6, #1
+ADD R2, R2, R3
+BRp DivLoop
+ADD R0, R6, #0
+BRnzp OUTPUT
+
+
 
 
 
@@ -64,7 +103,7 @@ STR R2,R1,#3
 RET
 ;
 
-ASCIIBUFF .BLKW x0000
+ASCIIBUFF .BLKW 5 
 ASCIIplus .FILL x002B
 ASCIIminus .FILL x002D
 ASCIIoffset .FILL x0030
