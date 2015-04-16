@@ -1,0 +1,20 @@
+//Symbol Name		Page Address
+//----------------	------------
+//	ASCIIBUFF               3027
+//	ASCIIminus              3028
+//	ASCIIoffset             3029
+//	ASCIIplus               3027
+//	Begin1                  3023
+//	Begin10                 301C
+//	Begin100                3012
+//	BinarytoASCII           3008
+//	End10                   3021
+//	End100                  3018
+//	Loop10                  301D
+//	Loop100                 3014
+//	MyNum                   3007
+//	Neg10                   302C
+//	Neg100                  302A
+//	NegSign                 300E
+//	NewlineChar             302D
+//	Pos100                  302B
